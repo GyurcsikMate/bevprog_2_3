@@ -10,6 +10,7 @@ void Jatekmester::event_loop()
 {
     event ev;
     Application* ize=this;
+
     for(int i=0; i<15; i++)
     {
         for(int j=0; j<15; j++)
@@ -28,8 +29,8 @@ void Jatekmester::event_loop()
         {
             _widgets[i]->draw();
         }
-        for(int jatekos=1; jatekos<=2; jatekos++)
-        {
+        int jatekos;
+        jatekos=1;
             if(ev.type == ev_mouse && ev.button==btn_left)
             {
                 int iteraptor;
@@ -38,8 +39,10 @@ void Jatekmester::event_loop()
                     if(_widgets[i]->is_selected(ev.pos_x,ev.pos_y))
                     {
                         iteraptor=i;
+                        _widgets[iteraptor]->handle(jatekos);
+
                     }
-                _widgets[iteraptor]->handle(jatekos);
+
 
                 }
 
@@ -47,7 +50,7 @@ void Jatekmester::event_loop()
         gout<<refresh;
         }
     }
-}
+
 void Jatekmester::action(std::string)
 {
 
