@@ -6,14 +6,15 @@ class Widget;
 
 class Application
 {
+protected:
+    std::vector<Widget *> _widgets;
 public:
 
         virtual ~Application(){}
         void registerWidget(Widget * widget);
-        void event_loop();
+        virtual void event_loop();
         virtual void action(std::string)=0;
-protected:
-    std::vector<Widget *> _widgets;
+
 };
 
 

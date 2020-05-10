@@ -19,7 +19,7 @@ void Application::event_loop() {
 
 
         if (focus!=-1) {
-            _widgets[focus]->handle(ev);
+            _widgets[focus]->handle(focus);
         }
         for (Widget * w : _widgets) {
             w->draw();
