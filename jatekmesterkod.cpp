@@ -37,6 +37,11 @@ void Jatekmester::event_loop()
             {
                 _widgets[i]->draw();
             }
+            /*for(size_t i=0; i<14; i++)
+            {
+                color(0,100,0)<<move_to(0,i*20);
+            }
+        */
         }
         if (gyozelem==1)
         {
@@ -90,52 +95,112 @@ void Jatekmester::event_loop()
                                 }
 
 
-                                        }
-
-
-                                    }
-                                }
-                                for(size_t j=0; j<9; j++)
-                                {
-
-                                    for(size_t i=0; i<_widgets.size(); i++)
-                                    {
-                                        if(_widgets[i]->ykereso()==_widgets[iteraptor]->ykereso() and _widgets[i]->xkereso()==_widgets[iteraptor]->xkereso()+20*(j-4))
-                                        {
-                                            if(_widgets[i]->kiekereso()==jatszo)
-                                            {
-                                                szamlalo++;
-                                                if (szamlalo==5)
-                                                {
-                                                    cout<<"nyert";
-                                                    gout<<move_to(0,0)<<color(0,0,0)<<box(300,300)<<move_to(100,100)<<color(0,200,0)<<text(to_string(jatszo)+". jatekos nyert!")<<refresh;
-                                                    gyozelem=1;
-                                                }
-                                            }
-                                            else
-                                            {
-                                                szamlalo=0;
-                                            }
-                                            }
-
-
-                                    }
-                                }
-
-
                             }
 
 
                         }
+                    }
+                    for(size_t j=0; j<9; j++)
+                    {
+
+                        for(size_t i=0; i<_widgets.size(); i++)
+                        {
+                            if(_widgets[i]->ykereso()==_widgets[iteraptor]->ykereso() and _widgets[i]->xkereso()==_widgets[iteraptor]->xkereso()+20*(j-4))
+                            {
+                                if(_widgets[i]->kiekereso()==jatszo)
+                                {
+                                    szamlalo++;
+                                    if (szamlalo==5)
+                                    {
+                                        cout<<"nyert";
+                                        gout<<move_to(0,0)<<color(0,0,0)<<box(300,300)<<move_to(100,100)<<color(0,200,0)<<text(to_string(jatszo)+". jatekos nyert!")<<refresh;
+                                        gyozelem=1;
+                                    }
+                                }
+                                else
+                                {
+                                    szamlalo=0;
+                                }
+                            }
+                        }
+
+                        }
+                        for(size_t j=0; j<9; j++)
+                        {
+
+                            for(size_t i=0; i<_widgets.size(); i++)
+                            {
+                                if(_widgets[i]->ykereso()==_widgets[iteraptor]->ykereso()+20*(j-4) and _widgets[i]->xkereso()==_widgets[iteraptor]->xkereso()+20*(j-4))
+                                {
+                                    if(_widgets[i]->kiekereso()==jatszo)
+                                    {
+                                        szamlalo++;
+                                        if (szamlalo==5)
+                                        {
+                                            cout<<"nyert";
+                                            gout<<move_to(0,0)<<color(0,0,0)<<box(300,300)<<move_to(100,100)<<color(0,200,0)<<text(to_string(jatszo)+". jatekos nyert!")<<refresh;
+                                            gyozelem=1;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        szamlalo=0;
+                                    }
+                                }
+
+                            }
+                            }
+                            for(size_t j=0; j<9; j++)
+                            {
+
+                                for(size_t i=0; i<_widgets.size(); i++)
+                                {
+                                    if(_widgets[i]->ykereso()==_widgets[iteraptor]->ykereso()+20*(j-4) and _widgets[i]->xkereso()==_widgets[iteraptor]->xkereso()-20*(j-4))
+                                    {
+                                        if(_widgets[i]->kiekereso()==jatszo)
+                                        {
+                                            szamlalo++;
+                                            if (szamlalo==5)
+                                            {
+                                                cout<<"nyert";
+                                                gout<<move_to(0,0)<<color(0,0,0)<<box(300,300)<<move_to(100,100)<<color(0,200,0)<<text(to_string(jatszo)+". jatekos nyert!")<<refresh;
+                                                gyozelem=1;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            szamlalo=0;
+                                        }
+                                    }
+
+
+                                }
+                            }
+                            int teli=0;
+                            for(size_t i=0; i<_widgets.size(); i++)
+                            {
+                                if(_widgets[i]->kiekereso()==0)
+                                {
+                                    teli++;
+                                }
+                            }
+                            if(teli==0)
+                            {
+                                gout<<move_to(0,0)<<color(0,0,0)<<box(300,300)<<move_to(100,100)<<color(0,200,0)<<text("Sajnos betelt a pálya")<<refresh;
+                            }
+                        }
+
 
                     }
-                    gout<<refresh;
+
                 }
+                gout<<refresh;
             }
+        }
 
-            void Jatekmester::action(std::string)
-            {
+        void Jatekmester::action(std::string)
+        {
 
-            }
+        }
 
 
