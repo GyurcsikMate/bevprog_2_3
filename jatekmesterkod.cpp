@@ -38,6 +38,11 @@ void Jatekmester::event_loop()
                 _widgets[i]->draw();
             }
         }
+        if (gyozelem==1)
+        {
+
+            gout<<color(0,0,0)<<box(300,300)<<text(to_string(jatekos)+". jatekos nyert!")<<refresh;
+        }
 
         if(ev.type == ev_mouse && ev.button==btn_left)
         {
@@ -50,7 +55,6 @@ void Jatekmester::event_loop()
                     _widgets[iteraptor]->handle(jatekos);
                     int szamlalo=0;
                     int jatszo=jatekos;
-                    cout<<" "<<jatekos<<" ";
                     if(jatekos==1)
                     {
                         jatekos++;
@@ -76,7 +80,8 @@ void Jatekmester::event_loop()
                                     if (szamlalo==5)
                                     {
                                         cout<<"nyert";
-                                        gout<<color(0,0,0)<<box(300,300)<<text(to_string(jatszo)+". jatekos nyert!")<<refresh;
+                                        gout<<move_to(0,0)<<color(0,0,0)<<box(300,300)<<move_to(100,100)<<color(0,200,0)<<text(to_string(jatszo)+". jatekos nyert!")<<refresh;
+                                        gyozelem=1;
                                     }
                                 }
                                 else
@@ -85,24 +90,52 @@ void Jatekmester::event_loop()
                                 }
 
 
+                                        }
+
+
+                                    }
+                                }
+                                for(size_t j=0; j<9; j++)
+                                {
+
+                                    for(size_t i=0; i<_widgets.size(); i++)
+                                    {
+                                        if(_widgets[i]->ykereso()==_widgets[iteraptor]->ykereso() and _widgets[i]->xkereso()==_widgets[iteraptor]->xkereso()+20*(j-4))
+                                        {
+                                            if(_widgets[i]->kiekereso()==jatszo)
+                                            {
+                                                szamlalo++;
+                                                if (szamlalo==5)
+                                                {
+                                                    cout<<"nyert";
+                                                    gout<<move_to(0,0)<<color(0,0,0)<<box(300,300)<<move_to(100,100)<<color(0,200,0)<<text(to_string(jatszo)+". jatekos nyert!")<<refresh;
+                                                    gyozelem=1;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                szamlalo=0;
+                                            }
+                                            }
+
+
+                                    }
+                                }
+
+
                             }
 
 
                         }
+
                     }
-
-
+                    gout<<refresh;
                 }
+            }
 
+            void Jatekmester::action(std::string)
+            {
 
             }
 
-        }
-        gout<<refresh;
-    }
-}
 
-void Jatekmester::action(std::string)
-{
-
-}
