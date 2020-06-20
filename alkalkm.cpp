@@ -1,29 +1,27 @@
 #include "alkalkm.hpp"
-#include "graphics.hpp"
-#include "widgetss.hpp"
+//#include "graphics.hpp"
+//#include "widgetss.hpp"
 
-using namespace genv;
+
 using namespace std;
+using namespace genv;
 void Application::registerWidget(Widget * widget)
 {
     _widgets.push_back(widget);
 }
-
-void Application::event_loop() {
-    event ev;
-    int focus = -1;
-    while(gin >> ev ) {
-        if (ev.type == ev_key && ev.keycode==key_enter) {
-            action("enter");
-                }
-
-
-        if (focus!=-1) {
-            _widgets[focus]->handle(focus);
+Application::~Application()
+{
+    for(size_t i=0;i<_widgets.size();i++)
+        {
+            delete _widgets[i];
         }
-        for (Widget * w : _widgets) {
-            w->draw();
-        }
-        gout << refresh;
-    }}
 
+}
+void Application::draw()
+{
+    for(size_t i=0;i<_widgets.size();i++)
+        {
+            _widgets[i]->draw();
+        }
+    gout<<refresh;
+}
